@@ -51,14 +51,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'josuehumbertoh5@gmail.com'; // ⚠️ CAMBIA ESTO
+                    $mail->Username = 'josuehernandezdelangel9@gmail.com'; // ⚠️ CAMBIA ESTO
                     $mail->Password = 'abcdefghijklmnop'; // ⚠️ CAMBIA ESTO
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                     $mail->Port = 587;
                     $mail->CharSet = 'UTF-8';
                     
                     // Configuración del correo
-                    $mail->setFrom('josuehumbertoh5@gmail.com', 'Sistema Frutería'); // ⚠️ CAMBIA ESTO
+                    $mail->setFrom('josuehernandezdelangel9@gmail.com', 'Sistema Frutería'); // ⚠️ CAMBIA ESTO
                     $mail->addAddress($email, $usuario['nombre_completo']); // Nombre opcional
                     $mail->isHTML(true);
                     
