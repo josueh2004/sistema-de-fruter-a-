@@ -51,19 +51,22 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                     $mail->isSMTP();
                     $mail->Host = 'smtp.gmail.com';
                     $mail->SMTPAuth = true;
-                    $mail->Username = 'josuehernandezdelangel9@gmail.com'; // ⚠️ CAMBIA ESTO
-                    $mail->Password = 'otpzjoceckqzzrxp'; // ⚠️ CAMBIA ESTO
+                    $mail->Username = 'josuehernandezdelangel9@gmail.com'; // ⚠️ TU CORREO
+                    $mail->Password = 'otpzjoceckqzzrxp'; // ⚠️ TU CONTRASEÑA DE APLICACIÓN
                     $mail->SMTPSecure = PHPMailer::ENCRYPTION_STARTTLS;
                     $mail->Port = 587;
                     $mail->CharSet = 'UTF-8';
                     
                     // Configuración del correo
-                    $mail->setFrom('josuehernandezdelangel9@gmail.com', 'Sistema Frutería'); // ⚠️ CAMBIA ESTO
-                    $mail->addAddress($email, $usuario['nombre_completo']); // Nombre opcional
+                    $mail->setFrom('josuehernandezdelangel9@gmail.com', 'Sistema Frutería');
+                    $mail->addAddress($email, $usuario['nombre_completo']);
                     $mail->isHTML(true);
                     
-                    // Construir el enlace de recuperación
-                    $enlace_recuperacion = "http://localhost/tu_proyecto/restablecer_password.php?token=" . $token;
+                    // ==================== CONSTRUIR ENLACE (DETECCIÓN AUTOMÁTICA) ====================
+                    $protocolo = isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http";
+                    $host = $_SERVER['HTTP_HOST'];
+                    $ruta_proyecto = rtrim(dirname($_SERVER['PHP_SELF']), '/');
+                    $enlace_recuperacion = $protocolo . "://" . $host . $ruta_proyecto . "/restablecer_password.php?token=" . $token;
                     
                     // Asunto y cuerpo del correo
                     $mail->Subject = 'Recuperación de Contraseña - Sistema Frutería';
